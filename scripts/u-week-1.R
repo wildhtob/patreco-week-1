@@ -4,6 +4,7 @@ library(readr)        # to import tabular data (e.g. csv)
 library(dplyr)        # to manipulate (tabular) data
 library(ggplot2)      # to visualize data
 library(sf)           # handling spatial data
+library(janitor)      # clean and consistent naming
 
 # Task 1: Import data ####
 
@@ -32,3 +33,7 @@ wildschwein_sf[,2:3]
 
 wildschwein <- st_as_sf(wildschwein, coords = c("Long", "Lat"), crs = 4326)
 rm(wildschwein_sf)
+
+# Task 3: Project data from WGS84
+
+wildschwein <- st_transform(wildschwein, crs = 2056)
